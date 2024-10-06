@@ -17,7 +17,11 @@ This document explains how to install and use the Python script (located in a Gi
 * Python 3.x (Download and install from https://www.python.org/downloads/)
 * Packages: `requests`, `beautifulsoup4`, and `re`
 
-**Installation (Using pip):**
+**Install Code from Repo via Zip (for those unfamiliar with git):**
+1. Click on the Code button and select Download ZIP.
+2. Extract the ZIP file to your desired location.
+
+**Install Modules (Using pip):**
 
 1. Open a terminal or command prompt.
 2. Make sure you're in the directory where you want to download the script.
