@@ -1,17 +1,25 @@
 from datetime import datetime as dt
 from bs4 import BeautifulSoup as bs
-import requests
-import re
-import os
+import requests, re, os 
+
+# get each individual article's sections
+def getSections(sectionContainers, artNum):
+    sectionList = sectionContainers[artNum].find_all(
+        'a', rel='category tag'
+    )
+    if (len(sectionList) == 1): return sectionList[0].text
+    return sectionList[0].text + " & " + sectionList[1].text 
 
 # display collected titles and page links
-def dispArticleInfo(titles, links):
-    for i in range(len(titles)):
+def dispArticleInfo(titles, links, sectionContainers):
+    for i in range(len(titles)): 
+        sections = getSections(sectionContainers, i)  
         print(titles[i].text)
-        # print(f"Section: {sections[i].text}")
+        print(sections)
         print(f"Link: {links[i].get('href')}\n")
+        
         file.writelines(f"\n"+titles[i].text)
-        # file.writelines(f"\nSection: {sections[i].text}")
+        file.writelines(f"\n{sections}")
         file.writelines(f"\nLink: {links[i].get('href')}\n")
 
 year = '2009'
@@ -29,19 +37,20 @@ file = open(year+"-articles.txt", "w")
 
 # find the max page count per year
 pageCount = soup.find_all('a', class_='page-numbers')
-pageCount = int(pageCount[-2].text)
+pageCount = int(pageCount[-2].text)+1
 
-for i in range(1,pageCount):
-    URL = 'https://thelasallian.com/'+year+'/page/'+str(i)+'/'
+for i in range(1, pageCount):
+    URL  = 'https://thelasallian.com/'+year+'/page/'+str(i)+'/'
     req  = requests.get(URL)
     soup = bs(req.text, 'html.parser')
     
     titles = soup.find_all('h2', class_='entry-title heading-size-1')
+    sectionContainers = soup.find_all(class_="entry-categories-inner")
     links  = soup.find_all('a', href=re.compile(year))
-    # sections = soup.find_all('a', rel='category tag',
-    # string=["University", "Menagerie", "Sports", "Vanguard", "Opinion"])
+    
     print(f"Page {i}:") 
     file.writelines(f"\nPage {i}:") 
-    dispArticleInfo(titles, links)
+    
+    dispArticleInfo(titles, links, sectionContainers)
 
 file.close()
