@@ -25,6 +25,7 @@ This document explains how to install and use the Python script (located in a Gi
 
    ```bash
    pip install requests beautifulsoup4 re
+   # replace "pip" with "pip3" if you are using a later version
 
 **Running the Script:**
 1. Navigate to the directory containing the script.
