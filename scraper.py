@@ -31,11 +31,11 @@ def dispArticleInfo(titles, links, sectionContainers):
     for i in range(len(titles)): 
         sections = getSections(sectionContainers, i)  
         print(titles[i].text)
-        print(sections)
+        print(f"Section: {sections}")
         print(f"Link: {links[i].get('href')}\n")
         
         file.writelines(f"\n"+titles[i].text)
-        file.writelines(f"\n{sections}")
+        file.writelines(f"\nSection: {sections}")
         file.writelines(f"\nLink: {links[i].get('href')}\n")
 
 year = '2009'
