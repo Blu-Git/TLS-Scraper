@@ -31,14 +31,18 @@ file = open(year+"-articles.txt", "w")
 pageCount = soup.find_all('a', class_='page-numbers')
 pageCount = int(pageCount[-2].text)
 
-for i in range(pageCount):
-    URL = 'https://thelasallian.com/'+year+'/page/'+str(i)
+for i in range(1,pageCount):
+    URL = 'https://thelasallian.com/'+year+'/page/'+str(i)+'/'
+    
+    req  = requests.get(URL)
+    soup = bs(req.text, 'html.parser')
+    
     titles = soup.find_all('h2', class_='entry-title heading-size-1')
     links  = soup.find_all('a', href=re.compile(year))
     # sections = soup.find_all('a', rel='category tag',
     # string=["University", "Menagerie", "Sports", "Vanguard", "Opinion"])
-    print(f"Page {i+1}:") 
-    file.writelines(f"\nPage {i+1}:") 
+    print(f"Page {i}:") 
+    file.writelines(f"\nPage {i}:") 
     dispArticleInfo(titles, links)
 
 file.close()
