@@ -36,3 +36,7 @@ This web scraper collects all article titles and links from **The LaSallian (TLS
 
     ```bash
     python3 scraper.py
+
+### Developer Notes:
+- Expect a new feature that also displays the section of article soon.
+- I'm still new to python, if you have any suggestions or comments on how I can improve, feel free to let me know!
