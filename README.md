@@ -10,8 +10,6 @@ This web scraper collects all article titles and links from **The LaSallian (TLS
 
 ## Installing and Using the Python Script (From GitHub Repo)
 
-This document explains how to install and use the Python script (located in a GitHub repository) that scrapes article titles and links from The LaSallian website for a specific year.
-
 **Prerequisites:**
 
 * Python 3.x (Download and install from https://www.python.org/downloads/)
