@@ -55,7 +55,7 @@ file = open(year+"-articles.txt", "w")
 pageCount = soup.find_all('a', class_='page-numbers')
 pageCount = int(pageCount[-2].text)+1
 
-# 
+# Loop through each page of articles for the specified year.
 for i in range(1, pageCount):
     URL  = 'https://thelasallian.com/'+year+'/page/'+str(i)+'/'
     req  = requests.get(URL)
