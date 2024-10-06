@@ -33,7 +33,6 @@ pageCount = int(pageCount[-2].text)
 
 for i in range(1,pageCount):
     URL = 'https://thelasallian.com/'+year+'/page/'+str(i)+'/'
-    
     req  = requests.get(URL)
     soup = bs(req.text, 'html.parser')
     
